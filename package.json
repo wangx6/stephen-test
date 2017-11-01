@@ -1,0 +1,11 @@
+{
+  "name": "stephen",
+  "version": "1.0.0",
+  "description": "test for stephen",
+  "main": "index-bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Xin Wang",
+  "license": "ISC"
+}
