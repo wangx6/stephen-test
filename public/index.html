@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+	body{
+		font-size: 16px;
+	}
+	.dt-home__people-list-display__control-panel__char{
+		list-style: none;
+		display: block;
+		float: left;
+		font-size: 1em;
+		margin-right: 5px;
+	}
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    <script src="js/lib/angular-1.4.1.js"></script>
+</head>
+
+<body>
+	<div ng-app="devTest1" ng-controller="homeController">
+		<div class="dt-header">
+			<div class="dt-burger">burger</div>
+			<div class="dt-search-icon" ng-click="onClickMagnifyingGlass()">maginifying glass</div>
+		</div>
+		<div class="dt-home-banner">
+			<div class="dt-home-banner__icon">passport</div>
+			<div class="dt-home-banner__icon">projects</div>
+			<div class="dt-home-banner__icon">workgroups</div>
+			<div class="dt-home-banner__icon">role profile</div>
+			<div class="dt-home-banner__icon">communities</div>
+		</div>
+		<menu></menu>
+		<list-display></list-display>
+		<search-bar ng-show="showSearchBar">searchbar</search-bar>
+	</div>
+	<script src="js/index-bundle.js"></script>
+</body>
+
+</html>
