@@ -52,7 +52,7 @@
 	(function(angular) {
 		'use strict';
 
-		var $ = __webpack_require__(3);
+		var jquery = __webpack_require__(3);
 		var names = __webpack_require__(1);
 		var devTest1 = angular.module('devTest1', []);
 
@@ -72,6 +72,12 @@
 				return names;
 			}]);
 		})(names);
+
+		(function(jquery) {
+			devTest1.factory('dt$', [function() {
+				return jquery;
+			}]);
+		})(jquery);
 
 		/**
 		 * 
@@ -178,7 +184,7 @@
 		 * search bar
 		 * @param {}
 		 */
-		var searchBar = devTest1.directive('searchBar', [function() {
+		var searchBar = devTest1.directive('searchBar', ['dt$', function($) {
 			var linker = function(s, e) {
 				e = $(e[0]);
 			};
@@ -186,10 +192,20 @@
 				link: linker,
 				scope: false,
 				template: [
-					'<div class="dt-search-bar">',
-						'<div>content drop down</div>',
-						'<div><input placeholder="search for..."/></div>',
-						'<div><button>GO</button></div>',
+					'<div class="container-fluid dt-search-bar">',
+						'<div class="container-fluid row">',
+							'<div class="dropdown col-sm-2">',
+						    	'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">content',
+						    	'<span class="caret"></span></button>',
+							    '<ul class="dropdown-menu">',
+							      '<li><a href="#">HTML</a></li>',
+							      '<li><a href="#">CSS</a></li>',
+							      '<li><a href="#">JavaScript</a></li>',
+							    '</ul>',
+						  	'</div>',
+							'<div class="col-sm-8"><input class="form-control" placeholder="search for..."/></div>',
+							'<div class="col-sm-2"><button>GO</button></div>',
+					  	'</div>',
 					'</div>'
 				].join('')
 			};
@@ -258,7 +274,7 @@
 				template: [
 					'<div class="dt-statement-banner">',
 						'<div>icon</div>',
-						'<div>random text</div>',
+						'<div text-center>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</div>',
 						'<div ng-click="onClickCog()">cog</div>',
 					'</div>'
 				].join('')
@@ -269,13 +285,17 @@
 		 * 
 		 * @param {}
 		 */
-		var listDisplay = devTest1.directive('listDisplay', ['$timeout', function($timeout) {
-			var linker = function(s) {
+		var listDisplay = devTest1.directive('listDisplay', ['$timeout', 'dt$', function($timeout, dt$) {
+			var linker = function(s, e) {
 				var _charCodeStart = 65;
 				var _charCodeEnd = 90;
+				var planeIconEle;
 
+				s.showPopup = false;
+				s.popupCls = 'show-pop-up';
 				s.alphabets = [];
 				s.filterValue = '';
+				
 
 				/**
 				 * 
@@ -286,6 +306,15 @@
 					$timeout(function(){
 						s.peopleModel.filterByFirstChar(char);
 					}, 500);
+				};
+
+				s.onMouseOverPlaneIcon = function() {
+					console.log('what');
+					s.showPopup = true;
+				};
+
+				s.onMouseoutPlaneIcon = function() {
+					s.showPopup = false;
 				};
 
 				/**
@@ -324,8 +353,9 @@
 									'<div class="dt-home__people-list-display__control-panel__char" ng-repeat="char in alphabets" ng-click="onClickAlphabet(char)">{{char}}</div>',
 								'</div>',
 							'</div>',
+							'<div class="dt-plane-icon" title="Popover Header" data-content="email selected members" ng-mouseout="onMouseoutPlaneIcon()" ng-mouseover="onMouseOverPlaneIcon()" ng-class="showPopup ? popupCls : \'\'">plane icon</div>',
 						'</div>',
-						'<div class="dt-home__people-list-display__list container">',
+						'<div class="dt-home__people-list-display__list row">',
 							'<people-item class="row" ng-repeat="p in peopleModel.activeData" person="p"></people-item>',
 						'</div>',
 					'</div>'
@@ -344,7 +374,7 @@
 					person: '='
 				},
 				template:[
-					'<div class="person-item col">',
+					'<div class="person-item col-lg-4">',
 						'<div class="person-img"></div>',
 						'<div>{{person.nm}}</div>',
 						'<div>{{person.email}}</div>',

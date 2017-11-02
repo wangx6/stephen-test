@@ -2,7 +2,7 @@
 <html>
 
 <style>
-	div, ul, li{
+	/*div, ul, li{
 		border: 0;
 		margin: 0;
 		padding: 0;
@@ -75,13 +75,26 @@
 	}
 	.dt-search-bar{
 		display: flex;
+	}*/
+
+	.show-pop-up{
+		position: relative;
+		cursor: pointer;
+	}
+	.show-pop-up:after{
+		padding: 5px;
+		text-align: center;
+		content:attr(data-content);
+		position: absolute;
+		background: #333;
+		color: #fff;
 	}
 	
 </style>
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <script src="js/lib/angular-1.4.1.js"></script>
@@ -89,9 +102,9 @@
 
 <body>
 	<div ng-app="devTest1" ng-controller="homeController">
-		<div class="dt-header">
-			<div class="dt-burger">burger</div>
-			<div class="dt-search-icon" ng-click="onClickMagnifyingGlass()">maginifying glass</div>
+		<div class="row dt-header">
+			<div class="col-sm-6 dt-burger">burger</div>
+			<div class="col-sm-6 dt-search-icon" ng-click="onClickMagnifyingGlass()">maginifying glass</div>
 		</div>
 		<search-bar ng-show="showSearchBar">searchbar</search-bar>
 		<div class="dt-home-banner">
