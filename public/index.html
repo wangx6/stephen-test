@@ -36,6 +36,28 @@
 		background-color: green;
 		color: #fff;
 	}
+	
+	
+	.dt-header{
+		display: flex;
+	}
+	.dt-home-banner{
+		display: flex;
+	}
+	.dt-statement-banner{
+		display: flex;
+	}
+	.dt-search-bar{
+		display: flex;
+	}*/
+	.dt-load-more-btn{
+		background-color: green;
+		color: #fff;
+		border:0;
+		min-width: 200px;
+		padding: 5px;
+		text-transform: capitalize;
+	}
 	.dt-mask{
 		position: fixed;
 		width: 100%;
@@ -64,28 +86,19 @@
 	.menu--invisible{
 		transform: translateX(100%);
 	}
-	.dt-header{
-		display: flex;
-	}
-	.dt-home-banner{
-		display: flex;
-	}
-	.dt-statement-banner{
-		display: flex;
-	}
-	.dt-search-bar{
-		display: flex;
-	}*/
-
 	.show-pop-up{
 		position: relative;
 		cursor: pointer;
 	}
 	.show-pop-up:after{
 		padding: 5px;
+		width: 300px;
 		text-align: center;
 		content:attr(data-content);
 		position: absolute;
+		left: -150%;
+		top: -100%;
+
 		background: #333;
 		color: #fff;
 	}
@@ -107,16 +120,16 @@
 			<div class="col-sm-6 dt-search-icon" ng-click="onClickMagnifyingGlass()">maginifying glass</div>
 		</div>
 		<search-bar ng-show="showSearchBar">searchbar</search-bar>
-		<div class="dt-home-banner">
-			<div class="dt-home-banner__icon">passport</div>
-			<div class="dt-home-banner__icon">projects</div>
-			<div class="dt-home-banner__icon">workgroups</div>
-			<div class="dt-home-banner__icon">role profile</div>
-			<div class="dt-home-banner__icon">communities</div>
+		<div class="dt-home-banner d-flex justify-content-center">
+			<div class="dt-home-banner__icon ">passport</div>
+			<div class="dt-home-banner__icon ">projects</div>
+			<div class="dt-home-banner__icon ">workgroups</div>
+			<div class="dt-home-banner__icon ">role profile</div>
+			<div class="dt-home-banner__icon ">communities</div>
 		</div>
 		<statement-banner></statement-banner>
 		<list-display></list-display>
-		<button class="dt-load-more-btn" ng-click="onClickLoadMoreBtn()">load more</button>
+		<div class="d-flex justify-content-center"><button class="dt-load-more-btn" ng-click="onClickLoadMoreBtn()">load more</button></div>
 		<menu></menu>
 		<mask on-click="onClickMask" show-mask="showMask"></mask>
 	</div>

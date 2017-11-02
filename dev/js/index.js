@@ -27,6 +27,10 @@
 		}]);
 	})(names);
 
+	/**
+	 * fulll jquery as a service in the angular application
+	 * @param {}
+	 */
 	(function(jquery) {
 		devTest1.factory('dt$', [function() {
 			return jquery;
@@ -226,10 +230,10 @@
 			link: linker,
 			scope: false,
 			template: [
-				'<div class="dt-statement-banner">',
-					'<div>icon</div>',
-					'<div text-center>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</div>',
-					'<div ng-click="onClickCog()">cog</div>',
+				'<div class="container row dt-statement-banner">',
+					'<div class="col-sm-2">icon</div>',
+					'<div class="col-sm-8" text-center>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</div>',
+					'<div class="col-sm-2" ng-click="onClickCog()">cog</div>',
 				'</div>'
 			].join('')
 		};
@@ -263,7 +267,6 @@
 			};
 
 			s.onMouseOverPlaneIcon = function() {
-				console.log('what');
 				s.showPopup = true;
 			};
 
@@ -300,11 +303,11 @@
 			scope: false,
 			template: [
 				'<div class="dt-home__people-list-display">',
-					'<div class="dt-home__people-list-display__control-panel">',
+					'<div class="d-flex justify-content-between dt-home__people-list-display__control-panel">',
 						'<div><input ng-model="filterValue" ng-keyup="onKeyupFilter(filterValue)" placeholder="filter"/></div>',
 						'<div>',
 							'<div class="dt-home__people-list-display__control-panel__char-list">',
-								'<div class="dt-home__people-list-display__control-panel__char" ng-repeat="char in alphabets" ng-click="onClickAlphabet(char)">{{char}}</div>',
+								'<div class=" d-inline-flex dt-home__people-list-display__control-panel__char" ng-repeat="char in alphabets" ng-click="onClickAlphabet(char)">{{char}}</div>',
 							'</div>',
 						'</div>',
 						'<div class="dt-plane-icon" title="Popover Header" data-content="email selected members" ng-mouseout="onMouseoutPlaneIcon()" ng-mouseover="onMouseOverPlaneIcon()" ng-class="showPopup ? popupCls : \'\'">plane icon</div>',
