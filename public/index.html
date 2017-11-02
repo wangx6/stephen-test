@@ -2,16 +2,23 @@
 <html>
 
 <style>
+	div, ul, li{
+		border: 0;
+		margin: 0;
+		padding: 0;
+	}
 	div{
 		box-sizing: border-box;
 	}
 	body{
 		font-size: 16px;
 	}
+	.dt-home__people-list-display__control-panel__char-list{
+		display: flex;
+	}
 	.dt-home__people-list-display__control-panel__char{
 		list-style: none;
 		display: block;
-		float: left;
 		font-size: 1em;
 		margin-right: 5px;
 	}
@@ -20,8 +27,10 @@
 		padding: 20px;
 		width: 100px;
 		height: 100px;
-		float: left;
 		border-radius: 50px;
+	}
+	people-item{
+		display: block;
 	}
 	.dt-load-more-btn{
 		background-color: green;
@@ -55,12 +64,26 @@
 	.menu--invisible{
 		transform: translateX(100%);
 	}
+	.dt-header{
+		display: flex;
+	}
+	.dt-home-banner{
+		display: flex;
+	}
+	.dt-statement-banner{
+		display: flex;
+	}
+	.dt-search-bar{
+		display: flex;
+	}
+	
 </style>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <script src="js/lib/angular-1.4.1.js"></script>
 </head>
 
@@ -70,6 +93,7 @@
 			<div class="dt-burger">burger</div>
 			<div class="dt-search-icon" ng-click="onClickMagnifyingGlass()">maginifying glass</div>
 		</div>
+		<search-bar ng-show="showSearchBar">searchbar</search-bar>
 		<div class="dt-home-banner">
 			<div class="dt-home-banner__icon">passport</div>
 			<div class="dt-home-banner__icon">projects</div>
@@ -82,7 +106,6 @@
 		<button class="dt-load-more-btn" ng-click="onClickLoadMoreBtn()">load more</button>
 		<menu></menu>
 		<mask on-click="onClickMask" show-mask="showMask"></mask>
-		<search-bar ng-show="showSearchBar">searchbar</search-bar>
 	</div>
 	<script src="js/index-bundle.js"></script>
 </body>

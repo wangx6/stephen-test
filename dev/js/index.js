@@ -16,9 +16,8 @@
 	 */
 	var mockData = (function(names) {
 		return devTest1.factory('mockData', [function() {
-			// names = names.slice(0, 30);
-			var n;
-			for(var i = 0, ln = names.length; i < ln; i++) {
+			var n, i = 0, ln = names.length;
+			for(; i < ln; i++) {
 				n = names[i];
 				n.email = 'mockemail@domain.com';
 				n.selected = false;
@@ -45,6 +44,7 @@
 		}
 
 		var p = PeopleModel.prototype;
+
 		/**
 		 * 
 		 * @param {}
@@ -55,14 +55,9 @@
 		};
 
 		p.loadMore = function() {
-			console.log(this.currentIndex);
 			this.currentIndex += this.lazyLoadInterval;
-
 			this.usedData = this.usedData.concat(this.data.slice(this.currentIndex, this.currentIndex + this.lazyLoadInterval));
 			this.activeData = this.usedData;
-			console.log(this.activeData);
-
-			return this;
 		};
 
 		/**
@@ -100,27 +95,38 @@
 	 * dev test 1 controller
 	 */
 	var homeController = devTest1.controller('homeController', [
-	'$scope', 'mockData', 'PeopleModel', 
-	function($scope, mockData, PeopleModel) {
-		$scope.showSearchBar = false;
-		$scope.showMenu = false;
-		$scope.peopleModel = new PeopleModel({data: mockData});
-		$scope.showMask = false;
-
-		console.log($scope.peopleModel);
-
-		$scope.onClickMagnifyingGlass = function() {
-			$scope.showSearchBar = !$scope.showSearchBar;
-		};
-
-		$scope.onClickLoadMoreBtn = function() {
-			$scope.peopleModel.loadMore();
-		};
-
-		$scope.onClickMask = function() {
+		'$scope', 'mockData', 'PeopleModel', 
+		function($scope, mockData, PeopleModel) {
+			$scope.showSearchBar = false;
 			$scope.showMenu = false;
-		};
-	}]);
+			$scope.peopleModel = new PeopleModel({data: mockData});
+			$scope.showMask = false;
+
+			/**
+			 * 
+			 * @param {}
+			 */
+			$scope.onClickMagnifyingGlass = function() {
+				$scope.showSearchBar = !$scope.showSearchBar;
+			};
+
+			/**
+			 * 
+			 * @param {}
+			 */
+			$scope.onClickLoadMoreBtn = function() {
+				$scope.peopleModel.loadMore();
+			};
+
+			/**
+			 * 
+			 * @param {}
+			 */
+			$scope.onClickMask = function() {
+				$scope.showMenu = false;
+			};
+		}
+	]);
 
 	/**
 	 * search bar
@@ -134,7 +140,7 @@
 			link: linker,
 			scope: false,
 			template: [
-				'<div>',
+				'<div class="dt-search-bar">',
 					'<div>content drop down</div>',
 					'<div><input placeholder="search for..."/></div>',
 					'<div><button>GO</button></div>',
@@ -204,7 +210,7 @@
 			link: linker,
 			scope: false,
 			template: [
-				'<div>',
+				'<div class="dt-statement-banner">',
 					'<div>icon</div>',
 					'<div>random text</div>',
 					'<div ng-click="onClickCog()">cog</div>',
@@ -268,13 +274,13 @@
 					'<div class="dt-home__people-list-display__control-panel">',
 						'<div><input ng-model="filterValue" ng-keyup="onKeyupFilter(filterValue)" placeholder="filter"/></div>',
 						'<div>',
-							'<ul>',
-								'<li class="dt-home__people-list-display__control-panel__char" ng-repeat="char in alphabets" ng-click="onClickAlphabet(char)">{{char}}</li>',
-							'</ul>',
+							'<div class="dt-home__people-list-display__control-panel__char-list">',
+								'<div class="dt-home__people-list-display__control-panel__char" ng-repeat="char in alphabets" ng-click="onClickAlphabet(char)">{{char}}</div>',
+							'</div>',
 						'</div>',
 					'</div>',
-					'<div class="dt-home__people-list-display__list">',
-						'<people-item ng-repeat="p in peopleModel.activeData" person="p"></people-item>',
+					'<div class="dt-home__people-list-display__list container">',
+						'<people-item class="row" ng-repeat="p in peopleModel.activeData" person="p"></people-item>',
 					'</div>',
 				'</div>'
 			].join('')
@@ -292,7 +298,7 @@
 				person: '='
 			},
 			template:[
-				'<div class="person-item">',
+				'<div class="person-item col">',
 					'<div class="person-img"></div>',
 					'<div>{{person.nm}}</div>',
 					'<div>{{person.email}}</div>',
