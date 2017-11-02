@@ -16,7 +16,7 @@
 	 */
 	var mockData = (function(names) {
 		return devTest1.factory('mockData', [function() {
-			names = names.slice(0, 200);
+			// names = names.slice(0, 30);
 			var n;
 			for(var i = 0, ln = names.length; i < ln; i++) {
 				n = names[i];
@@ -36,8 +36,11 @@
 		function PeopleModel(config) {
 			this.config = config || {};
 			this.data = this.config.data || [];
+			this.usedData = [];
 			this.activeData = [];
+			this.lazyLoadInterval = 18;
 			this.limit = 200;
+			this.currentIndex = 0;
 			this.init();
 		}
 
@@ -47,7 +50,19 @@
 		 * @param {}
 		 */
 		p.init = function() {
-			this.activeData = this.data;
+			this.usedData = this.data.slice(0, this.lazyLoadInterval);
+			this.activeData = this.usedData;
+		};
+
+		p.loadMore = function() {
+			console.log(this.currentIndex);
+			this.currentIndex += this.lazyLoadInterval;
+
+			this.usedData = this.usedData.concat(this.data.slice(this.currentIndex, this.currentIndex + this.lazyLoadInterval));
+			this.activeData = this.usedData;
+			console.log(this.activeData);
+
+			return this;
 		};
 
 		/**
@@ -55,9 +70,9 @@
 		 * @param {}
 		 */
 		p.filterByName = function(name) {
-			var cache = [], p, i = 0, ln = this.data.length;
+			var cache = [], p, i = 0, ln = this.usedData.length;
 			for(; i < ln; i++  ) {
-				p = this.data[i];
+				p = this.usedData[i];
 				if(p.nm.indexOf(name) > -1) cache.push(p);
 			}
 			this.activeData = cache;
@@ -68,11 +83,11 @@
 		 * @param {}
 		 */
 		p.filterByFirstChar = function(selectedChar) {
-			var cache = [], p, i = 0, ln = this.data.length;
+			var cache = [], p, i = 0, ln = this.usedData.length;
 			selectedChar = selectedChar.toLowerCase();
 
 			for(; i < ln; i++  ) {
-				p = this.data[i];
+				p = this.usedData[i];
 				if(p.nm.charAt(0) === selectedChar) cache.push(p);
 			}
 			this.activeData = cache;
@@ -95,6 +110,10 @@
 
 		$scope.onClickMagnifyingGlass = function() {
 			$scope.showSearchBar = !$scope.showSearchBar;
+		};
+
+		$scope.onClickLoadMoreBtn = function() {
+			$scope.peopleModel.loadMore();
 		};
 	}]);
 
@@ -195,9 +214,11 @@
 				'<div class="dt-home__people-list-display">',
 					'<div class="dt-home__people-list-display__control-panel">',
 						'<div><input ng-model="filterValue" ng-keyup="onKeyupFilter(filterValue)" placeholder="filter"/></div>',
+						'<div>',
 							'<ul>',
 								'<li class="dt-home__people-list-display__control-panel__char" ng-repeat="char in alphabets" ng-click="onClickAlphabet(char)">{{char}}</li>',
 							'</ul>',
+						'</div>',
 					'</div>',
 					'<div class="dt-home__people-list-display__list">',
 						'<people-item ng-repeat="p in peopleModel.activeData" person="p"></people-item>',

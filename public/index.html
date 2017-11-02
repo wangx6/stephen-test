@@ -23,6 +23,10 @@
 		float: left;
 		border-radius: 50px;
 	}
+	.dt-load-more-btn{
+		background-color: green;
+		color: #fff;
+	}
 </style>
 
 <head>
@@ -47,6 +51,7 @@
 		</div>
 		<menu></menu>
 		<list-display></list-display>
+		<button class="dt-load-more-btn" ng-click="onClickLoadMoreBtn()">load more</button>
 		<search-bar ng-show="showSearchBar">searchbar</search-bar>
 	</div>
 	<script src="js/index-bundle.js"></script>
