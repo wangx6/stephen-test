@@ -7,7 +7,8 @@ body {
 
 .dt-home-banner {
   background-color: #333;
-  color: #fff; }
+  color: #fff;
+  padding: 20px; }
 
 .dt-load-more-btn {
   background-color: green;
@@ -64,7 +65,8 @@ body {
 
 .dt-statement-banner {
   background-color: #efefef;
-  padding: 15px 0; }
+  padding: 15px 0;
+  margin: 0; }
 
 .dt-statement-banner__statement {
   font-size: 1em; }
@@ -97,6 +99,9 @@ body {
   background-position: -650px -50px;
   width: 50px;
   height: 50px; }
+
+.dt-home__people-list-display {
+  padding: 20px; }
 
 .dt-home__people-list-display__control-panel {
   padding: 15px auto; }
@@ -168,41 +173,33 @@ body {
   border: 1px solid #ccc;
   color: #333; }
 
-.dt-home-banner-icon__img__list {
+.dt-home-banner-icon__img__passport {
   background-image: url("../img/sprite.png");
-  background-position: -1px -54px;
-  width: 55px;
-  height: 59px; }
+  background-position: -297px -54px;
+  width: 58px;
+  height: 60px; }
 
 .dt-home-banner-icon__img__project {
   background-image: url("../img/sprite.png");
   background-position: -217px -49px;
   width: 67px;
-  height: 66px; }
+  height: 60px; }
 
 .dt-home-banner-icon__img__workgroup {
   background-image: url("../img/sprite.png");
   background-position: -147px -50px;
   width: 62px;
-  height: 61px; }
+  height: 60px; }
 
-.dt-home-banner-icon__img__workgroup {
+.dt-home-banner-icon__img__profiles {
+  background-image: url("../img/sprite.png");
+  background-position: -449px -47px;
+  width: 64px;
+  height: 60px; }
+
+.dt-home-banner-icon__img__communities {
   background-image: url("../img/sprite.png");
   display: block;
-  background-position: -1px -54px;
-  width: 55px;
-  height: 59px; }
-
-.dt-home-banner-icon__img__list {
-  background-image: url("../img/sprite.png");
-  display: block;
-  background-position: -1px -54px;
-  width: 55px;
-  height: 59px; }
-
-.dt-home-banner-icon__img__list {
-  background-image: url("../img/sprite.png");
-  display: block;
-  background-position: -1px -54px;
-  width: 55px;
-  height: 59px; }
+  background-position: -374px -53px;
+  width: 67px;
+  height: 60px; }
