@@ -256,16 +256,18 @@
 			s.popupCls = 'show-pop-up';
 			s.alphabets = [];
 			s.filterValue = '';
+			s.selectedCharCls = 'dt-filter-char--selected';
 			
 			/**
 			 * 
 			 * @param {}
 			 */
-			s.onClickAlphabet = function(char) {
+			s.onClickAlphabet = function(char, index) {
 				// in case people type too fase
 				$timeout(function(){
-					s.peopleModel.filterByFirstChar(char);
-				}, 500);
+					s.peopleModel.filterByFirstChar(char.name);
+				}, 0);
+				_resetAlphabets(index);
 			};
 
 			/**
@@ -296,13 +298,22 @@
 				}, 0);
 			};
 
+			function _resetAlphabets(index) {
+				for(var i = 0, a ; (a = s.alphabets[i]); i++ ) a.selected = (i === index);
+			}
+
 			/**
 			 * 
 			 * @param {}
 			 */
 			function _initAlphabetsLooup() {
+				var temp = [];
 				for(var i = _charCodeStart; i <= _charCodeEnd; i++) 
-					s.alphabets.push(String.fromCharCode(i));
+					temp.push({
+						name: String.fromCharCode(i),
+						selected: false
+					});
+				s.alphabets = temp;
 			}
 			
 			_initAlphabetsLooup();
@@ -317,7 +328,7 @@
 						'<div><input ng-model="filterValue" ng-keyup="onKeyupFilter(filterValue)" placeholder="filter"/></div>',
 						'<div>',
 							'<div class="dt-home__people-list-display__control-panel__char-list">',
-								'<div class=" d-inline-flex dt-home__people-list-display__control-panel__char" ng-repeat="char in alphabets" ng-click="onClickAlphabet(char)">{{char}}</div>',
+								'<div class="d-inline-flex dt-home__people-list-display__control-panel__char" ng-class="char.selected ? selectedCharCls : \'\'" ng-repeat="char in alphabets track by $index" ng-click="onClickAlphabet(char, $index)">{{char.name}}</div>',
 							'</div>',
 						'</div>',
 						'<div class="dt-plane-icon fa fa-paper-plane fa-2x" title="Popover Header" data-content="email selected members" ng-mouseout="onMouseoutPlaneIcon()" ng-mouseover="onMouseOverPlaneIcon()" ng-class="showPopup ? popupCls : \'\'"></div>',
@@ -332,6 +343,10 @@
 
 	}]);
 
+	/**
+	 * 
+	 * @param {}
+	 */
 	devTest1.directive('peopleItem', [function() {
 		var linker = function(s) {
 			s.selectedCls = 'dt-person-state__bg--selected';
