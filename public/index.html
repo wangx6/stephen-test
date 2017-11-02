@@ -27,6 +27,34 @@
 		background-color: green;
 		color: #fff;
 	}
+	.dt-mask{
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		background-color: rgba(0,0,0, 0.6);
+		z-index: 100;
+	}
+	.dt-menu{
+		height: 100%;
+		width: 300px;
+		background: #fff;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		transition: transform 0.2s;
+		z-index: 101;
+	}
+	.menu--visible{
+		transform: translateX(0);
+	}
+	.menu--invisible{
+		transform: translateX(100%);
+	}
 </style>
 
 <head>
@@ -49,9 +77,11 @@
 			<div class="dt-home-banner__icon">role profile</div>
 			<div class="dt-home-banner__icon">communities</div>
 		</div>
-		<menu></menu>
+		<statement-banner></statement-banner>
 		<list-display></list-display>
 		<button class="dt-load-more-btn" ng-click="onClickLoadMoreBtn()">load more</button>
+		<menu></menu>
+		<mask on-click="onClickMask" show-mask="showMask"></mask>
 		<search-bar ng-show="showSearchBar">searchbar</search-bar>
 	</div>
 	<script src="js/index-bundle.js"></script>

@@ -151,6 +151,7 @@
 			$scope.showSearchBar = false;
 			$scope.showMenu = false;
 			$scope.peopleModel = new PeopleModel({data: mockData});
+			$scope.showMask = false;
 
 			console.log($scope.peopleModel);
 
@@ -160,6 +161,10 @@
 
 			$scope.onClickLoadMoreBtn = function() {
 				$scope.peopleModel.loadMore();
+			};
+
+			$scope.onClickMask = function() {
+				$scope.showMenu = false;
 			};
 		}]);
 
@@ -188,10 +193,57 @@
 		 * 
 		 * @param {}
 		 */
-		var menu = devTest1.directive('menu', [function() {
+		devTest1.directive('mask', [function(){
+			var linker = function(s) {
+				s.onClickMask = function() {
+					s.showMask = false;
+					s.onClick();
+				};
+				console.log('asdf');
+				console.log(s.onClick);
+			};
+			return {
+				link: linker,
+				scope: {
+					onClick: '=',
+					showMask: '='
+				},
+				template: [
+					'<div class="dt-mask" ng-click="onClickMask()" ng-show="showMask"></div>'
+				].join('')
+			};
+		}]);
+
+		/**
+		 * 
+		 * @param {}
+		 */
+		devTest1.directive('menu', [function(){
+			var linker = function(s) {
+				s.visibleCls = 'menu--visible';
+				s.invisibleCls = 'menu--invisible';
+				s.menuItems = ['item 1', 'item 2', 'item 3', 'item 5'];
+			};
+			return {
+				link: linker,
+				scope: false,
+				template: [
+					'<div class="dt-menu" ng-class="showMenu ? visibleCls : invisibleCls">',
+						'<div ng-repeat="it in menuItems">{{it}}</div>',
+					'</div>',
+				].join('')
+			};
+		}]);
+
+		/**
+		 * 
+		 * @param {}
+		 */
+		devTest1.directive('statementBanner', [function() {
 			var linker = function(s) {
 				s.onClickCog = function() {
 					s.showMenu = true;
+					s.showMask = true;
 				};
 			};
 			return {
@@ -224,9 +276,9 @@
 				 * @param {}
 				 */
 				s.onClickAlphabet = function(char) {
+					// in case people type too fase
 					$timeout(function(){
 						s.peopleModel.filterByFirstChar(char);
-						console.log(char);
 					}, 500);
 				};
 
@@ -235,9 +287,10 @@
 				 * @param {}
 				 */
 				s.onKeyupFilter = function(filterValue) {
+					// put this filter to the event stack
+					// to avoid heavy processing blocking on the call stach
 					$timeout(function(){
 						s.peopleModel.filterByName(filterValue);
-						console.log(filterValue);
 					}, 0);
 				};
 
@@ -278,7 +331,6 @@
 
 		devTest1.directive('peopleItem', [function() {
 			var linker = function(s) {
-				s.selected = false;
 			};
 			return {
 				link: linker,
@@ -290,7 +342,7 @@
 						'<div class="person-img"></div>',
 						'<div>{{person.nm}}</div>',
 						'<div>{{person.email}}</div>',
-						'<div class="person-select"><input ng-model="selected" type="checkbox"/></div>',
+						'<div class="person-select"><input ng-model="person.selected" type="checkbox"/></div>',
 					'</div>'
 				].join('')
 			};
