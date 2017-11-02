@@ -179,8 +179,6 @@
 				s.showMask = false;
 				s.onClick();
 			};
-			console.log('asdf');
-			console.log(s.onClick);
 		};
 		return {
 			link: linker,
@@ -231,9 +229,9 @@
 			scope: false,
 			template: [
 				'<div class="container row dt-statement-banner">',
-					'<div class="col-sm-2">icon</div>',
+					'<div class="col-sm-2 dt-statement-banner__icon--crown"></div>',
 					'<div class="col-sm-8" text-center>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</div>',
-					'<div class="col-sm-2" ng-click="onClickCog()">cog</div>',
+					'<i  class="fa fa-cog fa-2x" aria-hidden="true" ng-click="onClickCog()"></i>',
 				'</div>'
 			].join('')
 		};
@@ -254,7 +252,6 @@
 			s.alphabets = [];
 			s.filterValue = '';
 			
-
 			/**
 			 * 
 			 * @param {}
@@ -266,10 +263,18 @@
 				}, 500);
 			};
 
+			/**
+			 * 
+			 * @param {}
+			 */
 			s.onMouseOverPlaneIcon = function() {
 				s.showPopup = true;
 			};
 
+			/**
+			 * 
+			 * @param {}
+			 */
 			s.onMouseoutPlaneIcon = function() {
 				s.showPopup = false;
 			};
@@ -310,7 +315,7 @@
 								'<div class=" d-inline-flex dt-home__people-list-display__control-panel__char" ng-repeat="char in alphabets" ng-click="onClickAlphabet(char)">{{char}}</div>',
 							'</div>',
 						'</div>',
-						'<div class="dt-plane-icon" title="Popover Header" data-content="email selected members" ng-mouseout="onMouseoutPlaneIcon()" ng-mouseover="onMouseOverPlaneIcon()" ng-class="showPopup ? popupCls : \'\'">plane icon</div>',
+						'<div class="dt-plane-icon fa fa-paper-plane fa-2x" title="Popover Header" data-content="email selected members" ng-mouseout="onMouseoutPlaneIcon()" ng-mouseover="onMouseOverPlaneIcon()" ng-class="showPopup ? popupCls : \'\'"></div>',
 					'</div>',
 					'<div class="dt-home__people-list-display__list row">',
 						'<people-item class="row" ng-repeat="p in peopleModel.activeData" person="p"></people-item>',
@@ -324,18 +329,25 @@
 
 	devTest1.directive('peopleItem', [function() {
 		var linker = function(s) {
+			s.selectedCls = 'dt-person-state__bg--selected';
 		};
 		return {
 			link: linker,
+			replace: true,
 			scope: {
 				person: '='
 			},
 			template:[
-				'<div class="person-item col-lg-4">',
-					'<div class="person-img"></div>',
-					'<div>{{person.nm}}</div>',
-					'<div>{{person.email}}</div>',
-					'<div class="person-select"><input ng-model="person.selected" type="checkbox"/></div>',
+				'<div class="dt-person-item col-lg-4 d-flex align-items-center">',
+					'<div class="person-img">',
+						'<div class="dt-person-state__bg d-flex justify-content-center" ng-class="person.selected ? selectedCls : \'\'">',
+							'<input ng-model="person.selected" type="checkbox"/>',
+						'</div>',
+					'</div>',
+					'<div>',
+						'<div class="person-name">{{person.nm}}</div>',
+						'<div>{{person.email}}</div>',
+					'</div>',
 				'</div>'
 			].join('')
 		};

@@ -1,123 +1,31 @@
 <!DOCTYPE html>
 <html>
 
-<style>
-	/*div, ul, li{
-		border: 0;
-		margin: 0;
-		padding: 0;
-	}
-	div{
-		box-sizing: border-box;
-	}
-	body{
-		font-size: 16px;
-	}
-	.dt-home__people-list-display__control-panel__char-list{
-		display: flex;
-	}
-	.dt-home__people-list-display__control-panel__char{
-		list-style: none;
-		display: block;
-		font-size: 1em;
-		margin-right: 5px;
-	}
-	.person-item{
-		border: 1px solid #ccc;
-		padding: 20px;
-		width: 100px;
-		height: 100px;
-		border-radius: 50px;
-	}
-	people-item{
-		display: block;
-	}
-	.dt-load-more-btn{
-		background-color: green;
-		color: #fff;
-	}
-	
-	
-	.dt-header{
-		display: flex;
-	}
-	.dt-home-banner{
-		display: flex;
-	}
-	.dt-statement-banner{
-		display: flex;
-	}
-	.dt-search-bar{
-		display: flex;
-	}*/
-	.dt-load-more-btn{
-		background-color: green;
-		color: #fff;
-		border:0;
-		min-width: 200px;
-		padding: 5px;
-		text-transform: capitalize;
-	}
-	.dt-mask{
-		position: fixed;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		right: 0;
-		left: 0;
-		bottom: 0;
-		background-color: rgba(0,0,0, 0.6);
-		z-index: 100;
-	}
-	.dt-menu{
-		height: 100%;
-		width: 300px;
-		background: #fff;
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		transition: transform 0.2s;
-		z-index: 101;
-	}
-	.menu--visible{
-		transform: translateX(0);
-	}
-	.menu--invisible{
-		transform: translateX(100%);
-	}
-	.show-pop-up{
-		position: relative;
-		cursor: pointer;
-	}
-	.show-pop-up:after{
-		padding: 5px;
-		width: 300px;
-		text-align: center;
-		content:attr(data-content);
-		position: absolute;
-		left: -150%;
-		top: -100%;
-
-		background: #333;
-		color: #fff;
-	}
-	
-</style>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   	<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="js/lib/angular-1.4.1.js"></script>
 </head>
 
 <body>
 	<div ng-app="devTest1" ng-controller="homeController">
 		<div class="row dt-header">
-			<div class="col-sm-6 dt-burger">burger</div>
-			<div class="col-sm-6 dt-search-icon" ng-click="onClickMagnifyingGlass()">maginifying glass</div>
+			<div  class="col-sm-2">
+				<div class="dt-burger-icon"></div>
+				
+			</div>
+			
+			<div class="col-sm-10 d-flex justify-content-end">
+				<div class="dt-search-icon" ng-click="onClickMagnifyingGlass()"></div>
+				<div class="dt-user-head"></div>
+			</div>
 		</div>
 		<search-bar ng-show="showSearchBar">searchbar</search-bar>
 		<div class="dt-home-banner d-flex justify-content-center">

@@ -1,0 +1,174 @@
+/*div, ul, li{
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+div{
+	box-sizing: border-box;
+}
+body{
+	font-size: 16px;
+}
+.dt-home__people-list-display__control-panel__char-list{
+	display: flex;
+}
+.dt-home__people-list-display__control-panel__char{
+	list-style: none;
+	display: block;
+	font-size: 1em;
+	margin-right: 5px;
+}
+.person-item{
+	border: 1px solid #ccc;
+	padding: 20px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+}
+people-item{
+	display: block;
+}
+.dt-load-more-btn{
+	background-color: green;
+	color: #fff;
+}
+
+
+.dt-header{
+	display: flex;
+}
+
+.dt-statement-banner{
+	display: flex;
+}
+.dt-search-bar{
+	display: flex;
+}*/
+
+body{
+	overflow-x: hidden;
+}
+.dt-home-banner{
+	background-color: #333;
+	color: #fff;
+}
+.dt-load-more-btn{
+	background-color: green;
+	color: #fff;
+	border:0;
+	min-width: 200px;
+	padding: 5px;
+	text-transform: capitalize;
+}
+.dt-mask{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0, 0.6);
+	z-index: 100;
+}
+.dt-menu{
+	height: 100%;
+	width: 300px;
+	background: #fff;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	transition: transform 0.2s;
+	z-index: 101;
+}
+.menu--visible{
+	transform: translateX(0);
+}
+.menu--invisible{
+	transform: translateX(100%);
+}
+.show-pop-up{
+	position: relative;
+	cursor: pointer;
+}
+.show-pop-up:after{
+	padding: 5px;
+	width: 300px;
+	text-align: center;
+	content:attr(data-content);
+	position: absolute;
+	left: -150%;
+	top: -100%;
+
+	background: #333;
+	color: #fff;
+}
+.dt-home-banner__icon{
+	width: 100px;
+	height: 100px;
+	background: #eee;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.dt-user-head{
+	width: 40px;
+	height: 40px;
+	border:3px solid #fff;
+	box-shadow: 0 0 3px #ccc;
+	border-radius: 20px;
+	background-color: #333;
+}
+.dt-burger-icon{
+	background-image: url("../img/sprite.png");
+	display: block;
+	background-position: -238px 0px; 
+	width: 42px;
+	height: 31px;
+}
+.dt-search-icon{
+	background-image: url("../img/sprite.png");
+	display: block;
+	background-position: -650px -50px; 
+	width: 50px;
+	height: 50px;
+}
+.dt-statement-banner__icon--crown{
+	background-image: url("../img/sprite.png");
+	background-position: -456px -343px; 
+	width: 104px;
+	height: 118px;
+}
+.dt-statement-banner__icon--cog{
+	
+}
+.dt-person-item{
+	margin-bottom: 20px;
+}
+.dt-person-state__bg{
+	height: 100px;
+	width: 100%;
+	position: absolute;
+	bottom: -80px;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+.dt-person-state__bg--selected{
+	background-color: green;
+}
+.person-img{
+	position: relative;
+	overflow-x: hidden;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	border: 2px solid #ccc;
+	box-shadow: 0 0 5px #333;
+	background-color: #333;
+	margin-right: 10px;
+	overflow-y: hidden;
+}
+
+.person-name{
+	color: #09c;
+	text-transform: capitalize;
+}
