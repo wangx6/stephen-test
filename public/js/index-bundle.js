@@ -196,10 +196,10 @@
 				link: linker,
 				scope: false,
 				template: [
-					'<div class="container-fluid dt-search-bar">',
-						'<div class="container-fluid row">',
-							'<div class="dropdown col-sm-2">',
-						    	'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">content',
+					'<div class="dt-search-bar">',
+						'<div class="d-flex">',
+							'<div class="dt-search-bar__dropdown">',
+						    	'<button class="btn btn-primary dropdown-toggle dt-search-bar__dropdown__btn" type="button" data-toggle="dropdown">content',
 						    	'<span class="caret"></span></button>',
 							    '<ul class="dropdown-menu">',
 							      '<li><a href="#">HTML</a></li>',
@@ -207,8 +207,8 @@
 							      '<li><a href="#">JavaScript</a></li>',
 							    '</ul>',
 						  	'</div>',
-							'<div class="col-sm-8"><input class="form-control" placeholder="search for..."/></div>',
-							'<div class="col-sm-2"><button>GO</button></div>',
+							'<div class="dt-search-bar__search-input"><input class="form-control" placeholder="search for..."/></div>',
+							'<div class="dt-search-bar__go-btn"><button class="dt-search-bar__go-btn__btn btn btn-secondary">GO</button></div>',
 					  	'</div>',
 					'</div>'
 				].join('')
@@ -274,10 +274,14 @@
 				link: linker,
 				scope: false,
 				template: [
-					'<div class="container row dt-statement-banner">',
-						'<div class="col-sm-2 dt-statement-banner__icon--crown"></div>',
-						'<div class="col-sm-8" text-center>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</div>',
-						'<i  class="fa fa-cog fa-2x" aria-hidden="true" ng-click="onClickCog()"></i>',
+					'<div class="row dt-statement-banner d-flex align-items-center justify-content-around">',
+						'<div class="col-sm-2">',
+							'<div class="dt-statement-banner__icon--crown"></div>',
+						'</div>',
+						'<div class="col-sm-8 dt-statement-banner__statement" text-center>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</div>',
+						'<div>',
+						'<i class="fa fa-cog fa-2x" aria-hidden="true" ng-click="onClickCog()"></i>',
+						'</div>',
 					'</div>'
 				].join('')
 			};
@@ -363,8 +367,8 @@
 							'</div>',
 							'<div class="dt-plane-icon fa fa-paper-plane fa-2x" title="Popover Header" data-content="email selected members" ng-mouseout="onMouseoutPlaneIcon()" ng-mouseover="onMouseOverPlaneIcon()" ng-class="showPopup ? popupCls : \'\'"></div>',
 						'</div>',
-						'<div class="dt-home__people-list-display__list row">',
-							'<people-item class="row" ng-repeat="p in peopleModel.activeData" person="p"></people-item>',
+						'<div class="dt-home__people-list-display__list row d-flex justify-content-center">',
+							'<people-item class="" ng-repeat="p in peopleModel.activeData" person="p"></people-item>',
 						'</div>',
 					'</div>'
 				].join('')

@@ -47,6 +47,7 @@ people-item{
 
 body{
 	overflow-x: hidden;
+	padding: 40px;
 }
 .dt-home-banner{
 	background-color: #333;
@@ -95,14 +96,22 @@ body{
 .show-pop-up:after{
 	padding: 5px;
 	width: 300px;
+	font-size: 0.4em;
 	text-align: center;
 	content:attr(data-content);
 	position: absolute;
-	left: -150%;
+	right: 0%;
 	top: -100%;
-
+	font-family: arial;
 	background: #333;
 	color: #fff;
+}
+.dt-statement-banner{
+	background-color: #efefef;
+	padding: 15px 0;
+}
+.dt-statement-banner__statement{
+	font-size: 1em;
 }
 .dt-home-banner__icon{
 	width: 100px;
@@ -133,11 +142,18 @@ body{
 	width: 50px;
 	height: 50px;
 }
+.dt-home__people-list-display__control-panel{
+	padding: 15px auto;
+}
+.dt-home__people-list-display__control-panel__char{
+	margin-right: 5px;
+	cursor: pointer;
+}
 .dt-statement-banner__icon--crown{
-	background-image: url("../img/sprite.png");
-	background-position: -456px -343px; 
-	width: 104px;
-	height: 118px;
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+	background-color: orange;
 }
 .dt-statement-banner__icon--cog{
 	
@@ -171,4 +187,32 @@ body{
 .person-name{
 	color: #09c;
 	text-transform: capitalize;
+}
+.dt-search-bar{
+	padding: 15px auto;
+}
+.dt-search-bar__dropdown{
+	width: 10%;
+}
+.dt-search-bar__search-input{
+	width: 80%;
+}
+.dt-search-bar__go-btn{
+	background-color: #fff;
+	width: 10%;
+}
+.dt-search-bar__go-btn__btn{
+	width: 100%;
+	background-color: #efefef;
+	color: #333;
+}
+.dt-search-bar__dropdown__btn{
+	background-color: #efefef;
+	color: #333;
+	border: 1px solid #ccc;
+}
+.dt-search-bar__dropdown__btn:hover{
+	background-color: #ddd;
+	border: 1px solid #ccc;
+	color: #333;
 }
