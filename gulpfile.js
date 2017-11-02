@@ -11,6 +11,11 @@
             .pipe(gulp.dest('./public/css'));
     });
 
-	gulp.watch(indexScssPath, ['sass']);
+
+	gulp.task('sass:watch', function() {
+        gulp.watch(indexScssPath, ['sass']);
+    });
+
+	gulp.task('default', ['sass:watch', 'sass']);
 
 })();

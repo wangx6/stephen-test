@@ -11,7 +11,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    	<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/index.css">
-    <script src="js/lib/angular-1.4.1.js"></script>
 </head>
 
 <body>
@@ -29,11 +28,26 @@
 		</div>
 		<search-bar ng-show="showSearchBar">searchbar</search-bar>
 		<div class="dt-home-banner d-flex justify-content-center">
-			<div class="dt-home-banner__icon ">passport</div>
-			<div class="dt-home-banner__icon ">projects</div>
-			<div class="dt-home-banner__icon ">workgroups</div>
-			<div class="dt-home-banner__icon ">role profile</div>
-			<div class="dt-home-banner__icon ">communities</div>
+			<div class="dt-home-banner__icon ">
+				<div class="dt-home-banner-icon__img__list"></div>
+				<div>passport</div>
+			</div>
+			<div class="dt-home-banner__icon ">
+				<div class="dt-home-banner-icon__img__project"></div>
+				<div>projects</div>
+			</div>
+			<div class="dt-home-banner__icon ">
+				<div class="dt-home-banner-icon__img__workgroup"></div>
+				<div>workgroups</div>
+			</div>
+			<div class="dt-home-banner__icon ">
+				<div class="dt-home-banner-icon__img__project"></div>
+				<div>role profile</div>
+			</div>
+			<div class="dt-home-banner__icon ">
+				<div class="dt-home-banner-icon__img__project"></div>
+				<div>communities</div>
+			</div>
 		</div>
 		<statement-banner></statement-banner>
 		<list-display></list-display>

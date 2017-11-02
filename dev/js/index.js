@@ -3,10 +3,11 @@
  * @date 02/1102017
  * test for Steven
  */
-(function(angular) {
+(function() {
 	'use strict';
 
 	var jquery = require('jquery');
+	var angular = require('angular');
 	var names = require('./mock-data/names');
 	var devTest1 = angular.module('devTest1', []);
 
@@ -357,4 +358,4 @@
 		};
 	}]);
 	
-})(angular);
+})();
