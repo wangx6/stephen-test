@@ -3,7 +3,7 @@
 
     var gulp = require('gulp');
     var sass = require('gulp-sass');
-    var indexScssPath = './dev/style/module/index.scss';
+    var indexScssPath = './dev/style/**/*.scss';
 
     gulp.task('sass', function() {
         return gulp.src(indexScssPath)

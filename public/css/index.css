@@ -1,9 +1,11 @@
-/*
-*
-*/
+/* Home page is the index page */
+/*=============================*/
+/*   Colors used accross the application   */
+/*=========================================*/
+/* sass mixis */
 body {
   overflow-x: hidden;
-  padding: 40px; }
+  padding: 30px; }
 
 .dt-home-banner {
   background-color: #333;
@@ -41,9 +43,17 @@ body {
   z-index: 101; }
 
 .menu--visible {
+  -moz-transform: translateX(0);
+  -o-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -webkit-transform: translateX(0);
   transform: translateX(0); }
 
 .menu--invisible {
+  -moz-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
   transform: translateX(100%); }
 
 .show-pop-up {
@@ -83,6 +93,8 @@ body {
   height: 40px;
   border: 3px solid #fff;
   box-shadow: 0 0 3px #ccc;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
   border-radius: 20px;
   background-color: #333; }
 
